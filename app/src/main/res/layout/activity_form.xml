@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="br.com.technolog.checklist.FormActivity">
+
+    <!--
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:text="@string/anterior"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/btnBack"
+            android:background="@color/colorPrimary"
+            android:text="@string/pr_ximo"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="23dp"
+            android:layout_toStartOf="@+id/btnEnd"
+            android:background="@color/colorPrimary"
+            android:text="@string/salvar"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btnSave"
+            android:layout_alignBottom="@+id/btnSave"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorPrimary"
+            android:text="@string/encerrar"
+            android:textColor="@color/colorWhite"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/textFooterModulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/m_dulo_check_list"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/textFooterUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/usuario_teste_apk_transportes"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/textFooterData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:text="@string/dataTeste"
+            android:textColor="@color/colorWhite"
+            tools:ignore="RelativeOverlap"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <TabHost
+            android:id="@+id/tabHost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="85dp"
+                android:orientation="vertical"
+                >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/dados"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_weight="1"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            tools:ignore="UselessParent">
+
+                            <TextView
+                                android:id="@+id/placa"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/placa"
+                                android:textAlignment="center"
+                                android:textSize="30sp"
+                                android:textStyle="normal|bold" />
+
+                            <TextView
+                                android:id="@+id/textDataInicio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/textStatusInicio"
+                                android:layout_alignBottom="@+id/labelInicio"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginStart="35dp"
+                                android:layout_toEndOf="@+id/labelInicio"
+                                android:text="@string/textview"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/labelInicio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/placa"
+                                android:layout_marginStart="13dp"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/inicio_vistoria"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <TextView
+                                android:id="@+id/textVolumeInicio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelVolumeInicio"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginStart="28dp"
+                                android:layout_toEndOf="@+id/labelVolumeInicio"
+                                android:text="@string/textview"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/textStatusInicio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelStatusInicio"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginStart="35dp"
+                                android:layout_toEndOf="@+id/labelStatusInicio"
+                                android:text="@string/textview"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/labelVolumeInicio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelStatusInicio"
+                                android:layout_below="@+id/labelStatusInicio"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/volume_tanque"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <TextView
+                                android:id="@+id/labelStatusInicio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelInicio"
+                                android:layout_below="@+id/labelInicio"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/status_tanque"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <TextView
+                                android:id="@+id/labelFlgReboque"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelVolumeInicio"
+                                android:layout_below="@+id/labelVolumeInicio"
+                                android:layout_marginTop="30dp"
+                                android:text="@string/somente_reboque"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <RadioGroup
+                                android:id="@+id/reboqueRadio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelFlgReboque"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="27dp"
+                                android:layout_toEndOf="@+id/labelFlgReboque"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/radioSim"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/yes"
+                                    android:textSize="30sp" />
+
+                                <RadioButton
+                                    android:id="@+id/radioNao"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/no"
+                                    android:textSize="30sp" />
+                            </RadioGroup>
+
+                            <TextView
+                                android:id="@+id/labelNumManifesto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelFlgReboque"
+                                android:layout_below="@+id/labelFlgReboque"
+                                android:layout_marginTop="30dp"
+                                android:labelFor="@+id/editTextNumManifesto"
+                                android:text="@string/numero_do_manifesto"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <EditText
+                                android:id="@+id/editTextNumManifesto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelNumManifesto"
+                                android:layout_toEndOf="@+id/labelNumManifesto"
+                                android:ems="10"
+                                android:inputType="textMultiLine" />
+
+                            <TextView
+                                android:id="@+id/labelSistemasTerceiros"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelNumManifesto"
+                                android:layout_below="@+id/labelNumManifesto"
+                                android:layout_marginTop="30dp"
+                                android:labelFor="@+id/editTextSistemasTerceiros"
+                                android:text="@string/identificador_sistemas_terceiros"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <EditText
+                                android:id="@+id/editTextSistemasTerceiros"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelSistemasTerceiros"
+                                android:layout_toEndOf="@id/labelSistemasTerceiros"
+                                android:ems="10"
+                                android:inputType="textMultiLine" />
+
+                            <TextView
+                                android:id="@+id/labelConhecimentoTransporte"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelSistemasTerceiros"
+                                android:layout_below="@+id/labelSistemasTerceiros"
+                                android:layout_marginTop="30dp"
+                                android:labelFor="@+id/editTextConhecimento"
+                                android:text="@string/conhecimento_transporte"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <EditText
+                                android:id="@+id/editTextConhecimento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelConhecimentoTransporte"
+                                android:layout_toEndOf="@+id/labelConhecimentoTransporte"
+                                android:ems="10"
+                                android:inputType="textMultiLine" />
+
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/labelConhecimentoTransporte"
+                                android:layout_marginTop="22dp"
+                                android:text="@string/foto_placa_do_veiculo"
+                                android:textAlignment="center"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold" />
+
+                            <ImageButton
+                                android:id="@+id/btnGetPlaca"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/textView10"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="46dp"
+                                android:adjustViewBounds="true"
+                                android:background="@color/colorWhite"
+                                android:contentDescription="@string/foto_placa"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/ic_photo_camera_blue_grey_900_48dp" />
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/itens"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:orientation="vertical">
+
+                        <HorizontalScrollView
+                            android:id="@+id/group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbarStyle="outsideInset"
+                            >
+
+                            <LinearLayout
+                                android:id="@+id/grupoItens"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <TextView
+                            android:id="@+id/textNDN"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/_0_de_20"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="200dp"
+                                android:text="@string/obs"
+                                tools:text="Obs."/>
+
+                            <TextView
+                                android:id="@+id/fotoLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="40dp"
+                                android:text="@string/foto"
+                                tools:text="Foto"/>
+                        </RelativeLayout>
+
+                        <ListView
+                            android:id="@+id/lista2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:descendantFocusability="afterDescendants"
+                            android:focusable="false"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Finalização"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <TextView
+                                android:id="@+id/labelStatusCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="13dp"
+                                android:layout_marginTop="42dp"
+                                android:text="@string/status_do_checklist"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold"
+                                />
+
+                            <RadioGroup
+                                android:id="@+id/statCheck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/labelStatusCheck"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="27dp"
+                                android:layout_toEndOf="@+id/labelStatusCheck"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/aprovado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/aprovado"
+                                    android:textSize="18sp"/>
+
+                                <RadioButton
+                                    android:id="@+id/reprovado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/reprovado"
+                                    android:textSize="18sp"/>
+
+                                <RadioButton
+                                    android:id="@+id/indefinido"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/indefinido"
+                                    android:textSize="18sp"/>
+                            </RadioGroup>
+
+                            <TextView
+                                android:id="@+id/comentario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/labelStatusCheck"
+                                android:layout_below="@+id/labelStatusCheck"
+                                android:layout_marginTop="80dp"
+                                android:text="@string/coment"
+                                android:textSize="24sp"
+                                android:textStyle="normal|bold"
+                                />
+
+
+                            <EditText
+                                android:id="@+id/editTextComentario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/comentario"
+                                android:layout_marginStart="35dp"
+                                android:layout_toEndOf="@+id/comentario"
+                                android:ems="10"
+                                android:inputType="textMultiLine"
+                                android:lines="4"
+                                android:maxLength="4000"
+                                tools:ignore="LabelFor"/>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="80dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            tools:ignore="UselessParent">
+
+                            <FrameLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_above="@+id/signature_pad_description"
+                                android:layout_marginBottom="8dp"
+                                android:background="@android:color/darker_gray">
+
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/signature_pad_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="16dp"
+                                android:text="@string/agreement"
+                                android:textColor="@android:color/darker_gray"/>
+
+                            <com.github.gcacace.signaturepad.views.SignaturePad
+                                android:id="@+id/signature_pad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:orientation="horizontal"
+                                android:paddingTop="16dp">
+
+                                <Button
+                                    android:id="@+id/clear_button"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:enabled="false"
+                                    android:text="@string/clear_pad"
+                                    tools:ignore="ButtonStyle"/>
+
+                                <Button
+                                    android:id="@+id/save_button"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:enabled="false"
+                                    android:text="@string/save_signature"
+                                    tools:ignore="ButtonStyle"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/status"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/checkListStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="80dp"
+                            android:text="@string/checklist_n_o_enviado"
+                            android:textSize="30sp"
+                            android:textStyle="normal|bold"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+
+        </TabHost>
+
+    </LinearLayout>
+
+</RelativeLayout>

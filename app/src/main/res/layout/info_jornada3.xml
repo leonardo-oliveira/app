@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <LinearLayout
+        android:id="@+id/now_veic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/placaicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_local_shipping_blue_900_48dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <TextView
+            android:id="@+id/veiculoAtual"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|fill_horizontal"
+            android:layout_weight="1"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="65dp"
+            tools:layout_editor_absoluteY="17dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_veic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/now_veic"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/last_veic2"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_noun_back"
+            android:gravity="center"
+            android:text="Último Veiculo:"
+            tools:layout_editor_absoluteX="221dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/veiculoAnterior"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Testes 1234"
+            tools:layout_editor_absoluteX="391dp"
+            tools:layout_editor_absoluteY="17dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/start_mov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/now_veic">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_access_time_blue_a700_24dp"
+            android:text="Data/Hora inicio Movimento:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="64dp" />
+
+        <TextView
+            android:id="@+id/textViewMove"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Testes 1234"
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="64dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/time_dire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_mov">
+
+        <TextView
+            android:id="@+id/time_dire"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_access_time_blue_a700_24dp"
+            android:gravity="center"
+            android:text="Tempo de direção ininterrupta:"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="109dp" />
+
+        <TextView
+            android:id="@+id/textInint"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="1234"
+            tools:layout_editor_absoluteX="331dp"
+            tools:layout_editor_absoluteY="109dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_dire">
+
+        <TextView
+            android:id="@+id/last_stop"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_noun_hourglass_top"
+            android:text="Última parada:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <TextView
+            android:id="@+id/textViewParada"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Testes 1234"
+            tools:layout_editor_absoluteX="171dp"
+            tools:layout_editor_absoluteY="149dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_intra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_stop">
+
+        <TextView
+            android:id="@+id/intra"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_noun_hourglass_down"
+            android:text="Última Intrajornada:"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="189dp" />
+
+        <TextView
+            android:id="@+id/textViewIntra"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Testes 1234"
+            tools:layout_editor_absoluteX="219dp"
+            tools:layout_editor_absoluteY="189dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_intra">
+
+        <TextView
+            android:id="@+id/last_place"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_map_blue_900_24dp"
+            android:text="Último local:"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="240dp" />
+
+        <TextView
+            android:id="@+id/textViewLocation"
+            style="@style/TextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="Testes 1234"
+            app:layout_constraintStart_toEndOf="@+id/last_place"
+            tools:layout_editor_absoluteY="239dp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@android:color/transparent"
+        app:layout_constraintStart_toEndOf="@+id/last_veic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_directions_blue_a700_48dp" />
+
+
+</android.support.constraint.ConstraintLayout>

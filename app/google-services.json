@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "12597171648",
+    "firebase_url": "https://checklist-e1405.firebaseio.com",
+    "project_id": "checklist-e1405",
+    "storage_bucket": "checklist-e1405.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12597171648:android:20dad5d9babc5506",
+        "android_client_info": {
+          "package_name": "br.com.technolog.checklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12597171648-5dohcs153shp1fpgsp42559lvoj6ahec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.technolog.checklist",
+            "certificate_hash": "AD1E6662F273A068484FD56C6278C4AB106F9467"
+          }
+        },
+        {
+          "client_id": "12597171648-i5o0fe8tbfs43dv8p096sptqklkp878e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIZR4ZTwi1cdOsbJanB3rDCRJIPH047HM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12597171648-i5o0fe8tbfs43dv8p096sptqklkp878e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

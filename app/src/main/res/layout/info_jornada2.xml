@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <ImageButton
+        android:id="@+id/imageRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@android:color/transparent"
+        app:layout_constraintStart_toEndOf="@+id/veiculoAnterior"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_directions_blue_a700_48dp" />
+
+    <TextView
+        android:id="@+id/veiculoAtual"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/Placaicon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/intra"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:drawableStart="@drawable/ic_noun_hourglass_down"
+        android:text="Última Intrajornada:"
+        app:layout_constraintBottom_toTopOf="@+id/last_place"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/time_dire"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:drawableStart="@drawable/ic_access_time_blue_a700_24dp"
+        android:gravity="center"
+        android:text="Tempo de direção ininterrupta:"
+        app:layout_constraintBottom_toTopOf="@+id/last_stop"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/last_veic"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_noun_back"
+        android:gravity="center"
+        android:text="Último Veiculo:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/veiculoAnterior"
+        app:layout_constraintEnd_toStartOf="@+id/textViewMove"
+        app:layout_constraintStart_toStartOf="@+id/textViewMove" />
+
+    <TextView
+        android:id="@+id/veiculoAnterior"
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="7dp"
+        android:text="@string/teste"
+        app:layout_constraintStart_toEndOf="@+id/last_veic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/last_stop"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:drawableStart="@drawable/ic_noun_hourglass_top"
+        android:text="Última parada:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/intra"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/last_place"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="227dp"
+        android:drawableStart="@drawable/ic_map_blue_900_24dp"
+        android:text="Último local:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Placaicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/ic_local_shipping_blue_900_48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView14"
+        style="@style/TextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_access_time_blue_a700_24dp"
+        android:text="Data/Hora inicio Movimento:"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/time_dire"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/veiculoAtual" />
+
+    <TextView
+        android:id="@+id/textViewIntra"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/teste"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/intra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/intra"
+        app:layout_constraintTop_toTopOf="@+id/intra" />
+
+    <TextView
+        android:id="@+id/textInint"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/teste"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/time_dire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_dire"
+        app:layout_constraintTop_toTopOf="@+id/time_dire" />
+
+    <TextView
+        android:id="@+id/textViewMove"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/teste"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textViewLocation"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/teste"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/last_place"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/last_place"
+        app:layout_constraintTop_toTopOf="@+id/last_place" />
+
+    <TextView
+        android:id="@+id/textViewParada"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/teste"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/last_stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/last_stop"
+        app:layout_constraintTop_toTopOf="@+id/last_stop" />
+
+</android.support.constraint.ConstraintLayout>
