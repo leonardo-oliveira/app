@@ -221,7 +221,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 		RadioGroup smtRboque = (RadioGroup) findViewById(R.id.reboqueRadio);
 		RadioGroup statCheck = (RadioGroup) findViewById(R.id.statCheck);
 
-		Log.e("AQUELE ERRO", "onCreate: " + valores.getBoolean("SOMENTERBQ"));
+
 		if (valores.containsKey("SOMENTERBQ")) {
 			System.out.println(valores.getBoolean("SOMENTERBQ"));
 			if (valores.getBoolean("SOMENTERBQ")) {
@@ -291,26 +291,23 @@ public class SavedCheckActivity extends AppCompatActivity {
 
 		String caminho = valores.getString("CAMINHO_FT_PLACA");
 		caminhoFotoVeiculo = valores.getString("CAMINHO_FT_PLACA");
-		Log.e("teste do erro", "onCreate: " + caminho);
+
 		if (caminho != null || Objects.equals(caminho, "")) {
 			assert caminho != null;
 			File caminhoPlaca = new File(caminho);
 			imageUri = Uri.fromFile(caminhoPlaca);
 			btnGetPlaca.setImageURI(imageUri);
 		}
-		//textFooterUser.setText("");
+
 		GPSTracker gps = new GPSTracker(this);
 		gps.getLocation();
 
-		//set lat e long inicial
-		//latInicio = gps.getLatitude().toString();
-		//longInicio = gps.getLongitude().toString();
 
 		textFooterModulo.setText(R.string.modulo_check);
 		db = new BancoDados(getApplicationContext());
 
-		System.out.println(valores.getInt("COD_CLIENTE"));
-		//System.out.println(valores.getInt("COD_CHECK"));
+
+
 		textPlaca.setText(valores.getString("MODELO") + " - " + valores.getString("PLACA"));
 
 		host = (TabHost) findViewById(R.id.tabHost);
@@ -344,9 +341,9 @@ public class SavedCheckActivity extends AppCompatActivity {
 		statusCheck = (TextView) findViewById(R.id.checkListStatus);
 		statusCheck.setText(R.string.check_saved);
 		btnBack = (Button) findViewById(R.id.btnBack);
-		//btnBack.setVisibility(View.INVISIBLE);
+
 		btnNext = (Button) findViewById(R.id.btnNext);
-		//btnNext.setVisibility(View.INVISIBLE);
+
 		btnSave = (Button) findViewById(R.id.btnSave);
 		btnEnd = (Button) findViewById(R.id.btnEnd);
 		codigoCheck = valores.getInt("CODIGO_CHECK");
@@ -376,15 +373,15 @@ public class SavedCheckActivity extends AppCompatActivity {
 	private void checkList(Integer codCheck, Integer codModelo) {
 		textVolumeInicio.setText(R.string.erro_info_offline);
 		textStatusInicio.setText(R.string.erro_info_offline);
-		Log.e("CODIGO QUE VEM", "" + codCheck);
+
 		//TODO: Pegar os itens
 		itensCheckList = db.getSavedItens(codCheck, codModelo);
-		System.out.println(itensCheckList.size());
+
 		setItens(itensCheckList);
 
 		if (isOnline()) {
 			//TODO: Chamar metodos do retrofit que procura o checkList
-			Log.e("CODIGO QUE VEM", "" + codCheck);
+
 
 			Retrofit retrofit = new Retrofit.Builder()
 					.baseUrl(SyncService.BASE_URL)
@@ -399,28 +396,22 @@ public class SavedCheckActivity extends AppCompatActivity {
 				@Override
 				public void onResponse(Call<ItensResp> call, Response<ItensResp> response) {
 					if (response.isSuccessful()) {
-						System.out.println(response.body().itensList.size());
 						itensCheckList = response.body().itensList;
-						System.out.println();
-						System.out.println(response.body().volumeTanque);
-						System.out.println(response.body().data_info);
 						String data = response.body().data_info;
 						NumberFormat formatarFloat = new DecimalFormat("0.00");
 						String dataFormat = formatar(data);
 						textStatusInicio.setText(formatarFloat.format(response.body().statusTanque) + "% " + dataFormat);
 						textVolumeInicio.setText(response.body().volumeTanque + " Litros " + dataFormat);
-						//setItens(itensCheckList);
-						Log.e("ERRO", "MENTIRA FOI SUCESSO");
 					} else {
 						//RESPOSTA FAIL ACHOU O SERVIDOR
-						Log.e("ERRO", "MAS EO QEUE");
+
 					}
 				}
 
 				@Override
 				public void onFailure(Call<ItensResp> call, Throwable t) {
 					//FALHA AO CHAMAR
-					Log.e("ERRO", "NAO ACHOU O SERVER");
+
 				}
 			});
 
@@ -431,7 +422,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 
 	private void setItens(ArrayList<ItensCheckList> itensCheckList) {
 		Integer tamanho = itensCheckList.size();
-		Log.e("ta dando erro aqui", "" + tamanho);
+
 		if (tamanho > 0) {
 			ArrayList<Integer> codigosGrupos = new ArrayList<>();
 			for (int i = 0; i < tamanho; i++) {
@@ -442,7 +433,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 			}
 			//TODO: Modificar para buscar no servidor
 			grupoItens = db.getGrupoItem(codigosGrupos);
-			System.out.println(grupoItens.size());
+
 			popular(itensCheckList, codigosGrupos);
 			botoes();
 		}
@@ -478,7 +469,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 		TextView myAwesomeTextView = (TextView) findViewById(R.id.textNDN);
 		myAwesomeTextView.setText(1 + " de " + tamanho2);
 		//Criação do grupo de botões
-		System.out.println(tamanho2);
+
 		for (int i = 0; i < tamanho2; i++) {
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 					LinearLayout.LayoutParams.MATCH_PARENT,
@@ -499,8 +490,6 @@ public class SavedCheckActivity extends AppCompatActivity {
 			btn1.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
 					if (atual != id_) {
-						Log.e("COMECA", "OS TSTS COMECAM AQUI");
-
 						//ESQUEMA DE ATUALIZAR O VETOR EITA
 						nButton = id_;
 						findViewById(id_).setBackgroundResource(R.color.colorPrimary);
@@ -514,7 +503,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 						contentList(id_);
 
 					}
-					Log.e("heuehueh", "Codigo: " + grupoItens.get(finalI).getCod());
+
 				}
 			});
 		}
@@ -610,15 +599,11 @@ public class SavedCheckActivity extends AppCompatActivity {
 								//TODO: proxima
 							} else {
 								nButton++;
-								//findViewById(nButton).setBackgroundResource(R.color.colorPrimary);
+
 								findViewById(nButton).performClick();
-								//findViewById(atual).setBackgroundResource(R.color.colorGreyBlue);
+
 								atual = nButton;
 							}
-							//Toast.makeText(view.getContext(),
-							//		"Button clicked index = " + nButton, Toast.LENGTH_SHORT)
-							//		.show();
-							//mHList.scrollBy(tamanho, 0);
 							break;
 						case 2:
 							host.setCurrentTab(3);
@@ -626,7 +611,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 						case 3:
 							break;
 						default:
-							System.out.println("error");
+
 							break;
 					}
 				} catch (Throwable t) {
@@ -760,7 +745,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 
-		//System.out.println(valores.getInt("COD_CLIENTE"));
+
 
 		CheckLists check = new CheckLists();
 		//Dados gerais
@@ -772,7 +757,6 @@ public class SavedCheckActivity extends AppCompatActivity {
 		check.setPlacaVeiculo(valores.getString("PLACA"));
 		check.setDataInicioVistoria(dataInicio);
 		check.setCodModeloCheckList(valores.getInt("CODIGO_MODELO"));
-		Log.e("ERRO AQUI OOOH", "" + valores.getInt("CODIGO_MODELO"));
 		check.setCodVeiculo(valores.getInt("COD_VEICULO"));
 		check.setFlgAtivo(true);
 		check.setFlgSomenteReboques(flgSmtReboque);
@@ -879,7 +863,6 @@ public class SavedCheckActivity extends AppCompatActivity {
 		//MultipartBody requestBody = builderAnexos.build();
 
 		if (codigoCheck == null) {
-			System.out.println("entrou la");
 			Long valor = db.saveCheckList(eita, check);
 			codigoCheck = valor.intValue();
 
@@ -895,11 +878,9 @@ public class SavedCheckActivity extends AppCompatActivity {
 			@Override
 			public void onResponse(Call<Result> call, Response<Result> response) {
 				if (!response.isSuccessful()) {
-					Log.i("FUDEU DNV", "ERRO: " + response.code());
 					respEnviaServer(false);
 					statusCheck.setText(R.string.checklist_n_o_enviado);
 				} else {
-					Log.e("vamos la", response.body().toString());
 					if (Objects.equals(response.body().getResult(), "fail")) {
 						respEnviaServer(false);
 						statusCheck.setText(R.string.checklist_n_o_enviado);
@@ -914,10 +895,6 @@ public class SavedCheckActivity extends AppCompatActivity {
 
 			@Override
 			public void onFailure(Call<Result> call, Throwable t) {
-
-				Log.e(t.getLocalizedMessage(), t.getMessage());
-
-				Log.e("olha aqui", "aaa");
 				progressDialog.hide();
 				respEnviaServer(false);
 				statusCheck.setText(R.string.checklist_n_o_enviado);

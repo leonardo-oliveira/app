@@ -78,7 +78,7 @@ public class ListCheckSavedActivity extends AppCompatActivity {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 				CheckLists check = (CheckLists) listView.getItemAtPosition(position);
 				Integer codigoCheck = check.getCod();
-				Log.e("Codigo que ta indo:", "Numero: " + codigoCheck);
+
 				valores.putInt("CODIGO_CHECK", codigoCheck);
 				valores.putInt("CODIGO_MODELO", check.getCodModeloCheckList());
 				valores.putInt("COD_VEICULO", check.getCodVeiculo());
@@ -88,14 +88,13 @@ public class ListCheckSavedActivity extends AppCompatActivity {
 				valores.putString("DATAINICIO", check.getDataInicioVistoria());
 
 				valores.putString("CAMINHO_FT_PLACA", check.getCaminhoArquivoFotoPlacaVeiculo());
-
+				valores.putString("MODELO", check.getNomeCheck());
 				valores.putString("COMENTARIO", check.getComentarios());
 				valores.putString("MANIFESTO", check.getNumeroManifesto());
 				valores.putString("SISTEMAS", check.getIdentificadorSistemasTerceiros());
 				valores.putString("CONHECIMENTO", check.getNumeroConhecimentoTransporte());
 				valores.putBoolean("SOMENTERBQ", check.getFlgSomenteReboques());
-				System.out.println(check.getFlgSomenteReboques());
-				Log.e("AQUELE ERRO", "onItemClick: " + check.getFlgSomenteReboques());
+
 				valores.putInt("STATUS_CHECK", check.getStatusCheckList());
 				valores.putInt("BLOCKBUTTON", 0);
 				Intent intent = new Intent(getApplicationContext(), SavedCheckActivity.class);
@@ -112,7 +111,7 @@ public class ListCheckSavedActivity extends AppCompatActivity {
 		switch (item.getItemId()) {
 
 			case android.R.id.home:
-				finish(); // Finaliza a Activity atual
+				finish();
 				break;
 			case R.id.action_placas:
 				break;

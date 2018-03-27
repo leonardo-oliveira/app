@@ -84,7 +84,7 @@ public class ListActivity extends AppCompatActivity {
 
 	    db = new BancoDados(getApplicationContext());
 	    veiculosList = new ArrayList<>();
-	    System.out.println("entrou aqui");
+
 	    fab = (android.support.design.widget.FloatingActionButton) findViewById(R.id.fabReload);
 	    fab.bringToFront();
 	    fab.animate();
@@ -123,11 +123,11 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NextMeResp> call, Response<NextMeResp> response) { //pegando resposta do web server
                 if (!response.isSuccessful()) {
-                    Log.i("FUDEU DNV", "ERRO: " + response.code());
+
                 } else {
                     NextMeResp resposta = response.body();
                     ArrayList<NextMe> arrayList = new ArrayList<>();
-                    Log.e("UE?", " teste : " + resposta.nextMeList.size());
+
                     for (NextMe i : resposta.nextMeList) {
                         System.out.println(i.getCodVeiculo() + " w :" + i.getCodVeiculoW());
                         arrayList.add(i);
@@ -174,7 +174,7 @@ public class ListActivity extends AppCompatActivity {
 	    assert getSupportActionBar() != null;
         gps = new GPSTracker(this); // pegou referencia gps
         if (isOnline()) { //caso online
-            Log.e("MAS O QUE ?", "ENTROU NO ONLY");
+
 
             gps.getLocation();
             if (gps.canGetLocation()) {
@@ -187,7 +187,7 @@ public class ListActivity extends AppCompatActivity {
 		            Integer codCliente = valores.getInt("COD_CLIENTE");
 		            nextMe(codCliente, lat, longi, 5000);
 	            } catch (NullPointerException e) {
-		            Log.e(e.getLocalizedMessage(), "load: " + e.getMessage());
+
 		            getWithOutnxt();
 	            }
             } else {
@@ -200,7 +200,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
 	public void performClickWill(int pos) {
-		System.out.println(pos);
+
 		listView.performItemClick(null, pos, pos);
 	}
 
@@ -224,7 +224,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 ModelosCheckList modelo = (ModelosCheckList) listView.getItemAtPosition(position);
-                System.out.println(modelo);
+
                 Bundle bundle = valores;
                 Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                 bundle.putInt("COD_CHECK", modelo.getCod());
