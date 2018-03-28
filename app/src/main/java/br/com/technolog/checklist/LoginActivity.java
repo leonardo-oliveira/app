@@ -179,25 +179,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				mProgressDialog.dismiss();
 
 		} else {
-			Log.e("ONLINE", "login: TA ONLINE ");
+            /**
+             * Create a new instance of Retrofit(Retrofit turns your HTTP API into a Java interface)
+             * @see Retrofit
+             */
 			Retrofit retrofit = new Retrofit.Builder()
 					.baseUrl(LoginService.BASE_URL)
 					.addConverterFactory(GsonConverterFactory.create())
 					.build();
+
 			LoginService service = retrofit.create(LoginService.class);
+
+            /**
+             * Call<Usuario> an invocation of a Retrofit method that sends a request to a webserver and returns
+             * a response. Each call yields its own HTTP request and response pair. Use clone()
+             * to make multiple calls with the same parameters to the same webserver; this may be used to implement
+             * polling or to retry a failed call.
+             * @see https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html
+             */
+
 			final Call<Usuario> requestLogin = service.login(email, senha);
+
 			requestLogin.enqueue(new Callback<Usuario>() {
 				@Override
 				public void onResponse(Call<Usuario> call, Response<Usuario> response) {
 					if (!response.isSuccessful()) {
 						//TODO: Fazer uma função que exiba uma mensagem quando entrar nesse if
-						Log.e("TAB", "errorrr: " + response.code());
 						if (mProgressDialog.isShowing())
 							mProgressDialog.dismiss();
 					} else {
-						System.out.println(response.body().toString());
 						Usuario user = response.body();
-						System.out.println(user.toString());
 						Bundle bundle = new Bundle();
 						bundle.putInt("COD_CLIENTE", user.getCod_cliente());
 						bundle.putString("LOGIN", user.getLogin());
@@ -216,7 +227,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 				@Override
 				public void onFailure(Call<Usuario> call, Throwable t) {
-					Log.e("TAG", "erro: " + t.getMessage());
 					erroLogin();
 					if (mProgressDialog.isShowing())
 						mProgressDialog.dismiss();
