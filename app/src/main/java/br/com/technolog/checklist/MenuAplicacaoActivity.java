@@ -25,9 +25,16 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu_aplicacao);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		final Intent intent1 = getIntent();
 
+		final Intent intent1 = getIntent();
+        /**
+         * Get data from the activity caller
+         */
 		valores = intent1.getExtras();
+
+        /**
+         * Set up the footer data
+         */
 		TextView textFooterUser = (TextView) findViewById(R.id.textFooterUser);
 		usuario = valores.getString("LOGIN") + " | " + valores.getString("RAZAO_SOCIAL");
 		textFooterUser.setText(usuario);
@@ -38,6 +45,10 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 		btnCheck = (Button) findViewById(R.id.btnCheckList);
 		btnJornada = (Button) findViewById(R.id.btnJornada);
 		btnRotograma = (Button) findViewById(R.id.btnRotograma);
+
+		/**
+         * Set on click in button btnCheck, btnJornada and btnRotograma
+         */
 		setButton();
 
 		btnJornadaMacro = (Button) findViewById(R.id.btnJornadaMacro);
@@ -53,17 +64,23 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 	}
 
 	private void setButton() {
+        /**
+         * set on click to go to checklist function
+         */
 		btnCheck.setOnClickListener(new View.OnClickListener() {
-			@Override
+            // TODO: 28/03/2018 change the name of class HomeActivity to CheckListActivity 
+            @Override
 			public void onClick(View view) {
 				Bundle bundle = valores;
-
 				Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}
 		});
-
+		
+        /**
+         * Disable or enable burron btnJornada
+         */
 		if (valores.getInt("TIPO_USUARIO") == 2) {
 			btnJornada.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -80,10 +97,9 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 			btnJornada.setBackgroundColor(getResources().getColor(R.color.colorGrey));
 		}
 
-
 		btnRotograma.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View view) {
+            public void onClick(View view) {
 				alertNot();
 			}
 		});
@@ -91,6 +107,9 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 		btnRotograma.setBackgroundColor(getResources().getColor(R.color.colorGrey));
 	}
 
+    /**
+     * Show an alert if an user click on button btnRotograma
+     */
 	private void alertNot() {
 		new AlertDialog.Builder(this)
 				.setIcon(R.drawable.ic_warning_amber_800_24dp)
@@ -100,13 +119,12 @@ public class MenuAplicacaoActivity extends AppCompatActivity {
 				.show();
 	}
 
-	@Override
+    // TODO: 28/03/2018 Descovery what this do
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
 			case android.R.id.home:
-
-				//Intent mIntent = new Intent(this, LoginActivity.class);;
 				finish();
 				return true;
 			default:

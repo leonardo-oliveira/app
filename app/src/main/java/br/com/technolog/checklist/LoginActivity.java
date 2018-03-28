@@ -140,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         /**
          *  Verify if have a user in the var usuario if is NULL call the function to CPF
-         *
          */
 		if (usuario.getLogin() == null) {
 			String cpf = toCPF(email);
@@ -283,15 +282,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	}
 
 	/**
-	 * Shows the progress UI and hides the login form.
+	 * Shows the progress UI and hides the login form. On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+     * for very easy animations. If available, use these APIs to fade-in the progress spinner.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	private void showProgress(final boolean show) {
-		// On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-		// for very easy animations. If available, use these APIs to fade-in
-		// the progress spinner.
 		int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
 		mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		mLoginFormView.animate().setDuration(shortAnimTime).alpha(
 				show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
