@@ -12,7 +12,8 @@ public class ItensResp {
 	public ArrayList<ItensCheckList> itensList;
 	public Float statusTanque;
 	public Float volumeTanque;
-	public Float km;
+	public Float kmAtual;
 	public String data_info;
+	public String data_validade_tacografo;
 
 }

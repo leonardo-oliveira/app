@@ -126,7 +126,8 @@ public class FormActivity extends AppCompatActivity {
 	private ProgressDialog saveProgressDialog;
 	private boolean enviado;
 	private TextView statusCheck;
-	//private EditText kmAtual;
+	private TextView textokmAtual;
+	private TextView validadeTacografo;
 
 	/**
 	 * Checks if the app has permission to write to device storage
@@ -218,6 +219,10 @@ public class FormActivity extends AppCompatActivity {
 
 		textVolumeInicio = (TextView) findViewById(R.id.textVolumeInicio);
 		textStatusInicio = (TextView) findViewById(R.id.textStatusInicio);
+
+		textokmAtual = (TextView) findViewById(R.id.kmAtual);
+
+		validadeTacografo = (TextView) findViewById(R.id.validadeTacografo);
 
 		saveProgressDialog = new ProgressDialog(this);
 		saveProgressDialog.setMessage("Salvando CheckList");
@@ -350,25 +355,28 @@ public class FormActivity extends AppCompatActivity {
 					.addConverterFactory(GsonConverterFactory.create())
 					.build();
 			SyncService service = retrofit.create(SyncService.class);
-			int codVeic = valores.getInt("COD_VEICULO_W");
-			String date = Utilidades.getDataHora("yyyy-MM-dd HH:mm:ss");
-			Call<ItensResp> serviceResquest = service.getItens("itens", codVeic, date, codCheck, valores.getInt("COD_CLIENTE"));
 
+			int codVeic = valores.getInt("COD_VEICULO_W");
+
+			String date = Utilidades.getDataHora("yyyy-MM-dd HH:mm:ss");
+
+			Call<ItensResp> serviceResquest = service.getItens("itens", codVeic, date, codCheck, valores.getInt("COD_CLIENTE"));
+			Log.e("DATA", date);
 			serviceResquest.enqueue(new Callback<ItensResp>() {
 				@Override
 				public void onResponse(Call<ItensResp> call, Response<ItensResp> response) {
 					if (response.isSuccessful()) {
-						System.out.println(response.body().itensList.size());
 						itensCheckList = response.body().itensList;
 						System.out.println();
 						System.out.println(response.body().volumeTanque);
-						System.out.println(response.body().data_info);
+						Log.e("MENSAGEM",new Gson().toJson(response));
 						String data = response.body().data_info;
 						NumberFormat formatarFloat = new DecimalFormat("0.00");
 						String dataFormat = formatar(data);
 						textStatusInicio.setText(formatarFloat.format(response.body().statusTanque) + "% " + dataFormat);
 						textVolumeInicio.setText(response.body().volumeTanque + " Litros " + dataFormat);
-						//setItens(itensCheckList);
+						textokmAtual.setText(response.body().kmAtual + " km");
+						validadeTacografo.setText(response.body().data_validade_tacografo);
 
 					} else {
 						//RESPOSTA FAIL ACHOU O SERVIDOR
@@ -379,7 +387,6 @@ public class FormActivity extends AppCompatActivity {
 				@Override
 				public void onFailure(Call<ItensResp> call, Throwable t) {
 					//FALHA AO CHAMAR
-					Log.e("ERRO", "NAO ACHOU O SERVER");
 				}
 			});
 
