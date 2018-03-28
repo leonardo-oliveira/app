@@ -201,6 +201,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 			final Call<Usuario> requestLogin = service.login(email, senha);
 
 			requestLogin.enqueue(new Callback<Usuario>() {
+                /**
+                 * Make a request to server
+                 * @param call
+                 * @param response
+                 */
 				@Override
 				public void onResponse(Call<Usuario> call, Response<Usuario> response) {
 					if (!response.isSuccessful()) {
@@ -225,6 +230,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 					}
 				}
 
+                /**
+                 * In of fail of response
+                 * @param call
+                 * @param t
+                 */
 				@Override
 				public void onFailure(Call<Usuario> call, Throwable t) {
 					erroLogin();
@@ -236,6 +246,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		}
 	}
 
+    /**
+     * Create a new string with CPF pattern
+     * @param email
+     * @return
+     */
 	private String toCPF(String email) {
 		if (email.length() != 11)
 			return null;
@@ -296,6 +311,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		});
 	}
 
+    /**
+     * The Loader API lets you load data from a content provider or other data source for display in an FragmentActivity or Fragment.
+     * @param i
+     * @param bundle
+     * @return
+     */
 	@Override
 	public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
 		return new CursorLoader(this,
@@ -313,6 +334,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
 	}
 
+    /**
+     * On load finished
+     * @param cursorLoader
+     * @param cursor
+     */
 	@Override
 	public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
 		List<String> emails = new ArrayList<>();
@@ -321,31 +347,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 			emails.add(cursor.getString(ProfileQuery.ADDRESS));
 			cursor.moveToNext();
 		}
-
 		addEmailsToAutoComplete(emails);
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Cursor> cursorLoader) {
+	public void onLoaderReset(Loader<Cursor> cursorLoader) {}
 
-	}
-
+    /**
+     * Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
+     * @param emailAddressCollection
+     */
 	private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-		//Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-		ArrayAdapter<String> adapter =
-				new ArrayAdapter<>(LoginActivity.this,
+		ArrayAdapter<String> adapter = new ArrayAdapter<>(LoginActivity.this,
 						android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
 		mEmailView.setAdapter(adapter);
 	}
 
 	private void startSecondActivity(Class aClass) {
-
 		Intent secondActivity = new Intent(this, aClass);
 		startActivity(secondActivity);
 		finish();
 	}
 
+    /**
+     *  Setup a Popup if something goes wrong with authentication
+     */
 	public void erroLogin() {
 		new AlertDialog.Builder(this)
 				.setIcon(R.drawable.cancel)
@@ -369,6 +395,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		return netInfo != null && netInfo.isConnectedOrConnecting();
 	}
 
+    /**
+     * Verify if exist a folder in DCIM/Camera, if is not create a new
+     */
 	void fixMediaDir() {
 		File sdcard = Environment.getExternalStorageDirectory();
 		if (sdcard != null) {
@@ -380,14 +409,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	}
 
 	private interface ProfileQuery {
+        int ADDRESS = 0;
+        int IS_PRIMARY = 1;
 		String[] PROJECTION = {
 				ContactsContract.CommonDataKinds.Email.ADDRESS,
 				ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
 		};
-
-		int ADDRESS = 0;
-		int IS_PRIMARY = 1;
 	}
-
 }
 
