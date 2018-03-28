@@ -69,57 +69,94 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		//getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		super.onCreate(savedInstanceState);
-		//BancoDados bd = new BancoDados(getBaseContext());
 		final View view2 = this.findViewById(android.R.id.content);
-		//getSupportActionBar().setHomeButtonEnabled(true);
-		//getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_login);
 		// Set up the login form.
 		mEmailView = (AutoCompleteTextView) findViewById(R.id.inputUser);
 		mPasswordView = (EditText) findViewById(R.id.inputPass);
-
 		Button mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
+		/**
+		 * Interface definition for a callback to be invoked when a view is clicked.
+         * @param OnClickListener() function
+         * @see setOnClickListener
+		 */
 		mEmailSignInButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(final View view) {
 				login(view.getContext());
 			}
 		});
-
-
 		mProgressView = findViewById(R.id.login_progress);
 		fixMediaDir();
         TextView txtView = (TextView) findViewById(R.id.textViewForget);
+        /**
+         * Interface definition for a callback to be invoked when a view is clicked.
+         * @param OnClickListener() function
+         * @see setOnClickListener
+         */
         txtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://solutions.technolog.com.br/darwin/portal__interface/recuperar_senha_tablet" +
-                        ".php"));
+                /**
+                 * Create a new Intent with ACTION_VIE(Display the data to the user. This is the most common action performed on data)
+                 * and an URI with the request link to recover the password
+                 * @see URI
+                 * @see Intent
+                 */
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://solutions.technolog.com.br/darwin/portal__interface/recuperar_senha_tablet" + ".php"));
                 startActivity(browserIntent);
 
             }
         });
 	}
 
+    /**
+     * Login function
+     * @param context
+     */
 	private void login(final Context context) {
+        /**
+         * Set up the loading screen
+         */
 		final ProgressDialog mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setIndeterminate(true);
 		mProgressDialog.setMessage("Carregando...");
 		mProgressDialog.show();
+
+		/**
+         * Get data from input component
+         */
 		String email = mEmailView.getText().toString().trim();
 		String senha = mPasswordView.getText().toString().trim();
+
 		BancoDados db = new BancoDados(this);
 
+		/**
+         * Get user email and password from internal data base
+         */
 		Usuarios usuario = db.getUsuario(email, senha);
-		System.out.println(usuario.toString());
+
+        /**
+         *  Verify if have a user in the var usuario if is NULL call the function to CPF
+         *
+         */
 		if (usuario.getLogin() == null) {
 			String cpf = toCPF(email);
+            /**
+             * if cpf is different of null search on internal data base the user
+             * passing the user cpf and user password
+             */
 			if (cpf != null) {
 				usuario = db.getUsuario(cpf, senha);
 			}
 		}
+        /**
+         * If isn't null create a Bundle(a mapping from String keys to various Parcelable values)
+         * with user information to pass to another Activity using the Intent
+         * @see Intent
+         */
 		if (usuario.getSenha() != null) {
 			Bundle bundle = new Bundle();
 			bundle.putInt("COD_CLIENTE", usuario.getCod_cliente());
@@ -133,6 +170,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 			Intent intent = new Intent(context, MenuAplicacaoActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
+			finish();
+
+			/**
+             * Verify if the loading screen is showing
+             */
 			if (mProgressDialog.isShowing())
 				mProgressDialog.dismiss();
 
@@ -166,6 +208,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 						Intent intent = new Intent(context, MenuAplicacaoActivity.class);
 						intent.putExtras(bundle);
 						startActivity(intent);
+						finish();
 						if (mProgressDialog.isShowing())
 							mProgressDialog.dismiss();
 					}
@@ -192,7 +235,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 		String bloco3 = cpf.substring(6, 9);
 		String bloco4 = cpf.substring(9, 11);
 		cpf = bloco1 + "." + bloco2 + "." + bloco3 + "-" + bloco4;
-		Log.e("CPF", "toCPF: " + cpf);
 		return cpf;
 	}
 
@@ -291,7 +333,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 		Intent secondActivity = new Intent(this, aClass);
 		startActivity(secondActivity);
-		//finish();
+		finish();
 	}
 
 	public void erroLogin() {
@@ -303,7 +345,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 				.show();
 		mPasswordView.setError(getString(R.string.error_incorrect_password));
 		mPasswordView.requestFocus();
-
 	}
 
 	/**

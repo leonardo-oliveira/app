@@ -557,7 +557,6 @@ public class BancoDados extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_T_LOCALIZACAO_ITEM_VISTORIA);
@@ -1570,7 +1569,6 @@ public class BancoDados extends SQLiteOpenHelper {
 		String selectQuery = "SELECT * FROM "
 				+ T_USUARIOS + " WHERE " + LOGIN
 				+ " = \"" + email + "\" AND " + SENHA + " = \"" + senha + "\";";
-
 
 		Log.e("query", selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
