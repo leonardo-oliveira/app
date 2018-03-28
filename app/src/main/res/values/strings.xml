@@ -170,4 +170,8 @@
     <string name="none">Nenhum</string>
     <string name="JornadaMacro">Jornada de Macro</string>
     <string name="kmAtual">Km atual do veículo:</string>
+    <string name="engates">engates</string>
+    <string name="engate_1">Engate 1</string>
+    <string name="engate_2">Engate 2</string>
+    <string name="engate_3">Engate 3</string>
 </resources>

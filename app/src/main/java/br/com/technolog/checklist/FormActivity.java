@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Scroller;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,6 +127,10 @@ public class FormActivity extends AppCompatActivity {
 	private ProgressDialog saveProgressDialog;
 	private boolean enviado;
 	private TextView statusCheck;
+	private Spinner sp_engate1;
+	private Spinner sp_engate2;
+	private Spinner sp_engate3;
+
 	//private EditText kmAtual;
 
 	/**
@@ -326,13 +331,18 @@ public class FormActivity extends AppCompatActivity {
 		spec.setContent(R.id.status);
 		spec.setIndicator(getString(R.string.status));
 		host.addTab(spec);
+
+		//Tab 5
+		spec = host.newTabSpec(getString(R.string.engates));
+		spec.setContent(R.id.engates);
+		spec.setIndicator(getString(R.string.engates));
+		host.addTab(spec);
+
 		//função que define assinatura
 		assinatura();
 		statusCheck = (TextView) findViewById(R.id.checkListStatus);
 		btnBack = (Button) findViewById(R.id.btnBack);
-		//btnBack.setVisibility(View.INVISIBLE);
 		btnNext = (Button) findViewById(R.id.btnNext);
-		//btnNext.setVisibility(View.INVISIBLE);
 		btnSave = (Button) findViewById(R.id.btnSave);
 		btnEnd = (Button) findViewById(R.id.btnEnd);
 		checkList(valores.getInt("COD_CHECK"));
@@ -513,9 +523,6 @@ public class FormActivity extends AppCompatActivity {
 							//findViewById(atual).setBackgroundResource(R.color.colorGreyBlue);
 							atual = nButton;
 						}
-						//Toast.makeText(view.getContext(),
-						//		"Button clicked index = " + nButton, Toast.LENGTH_SHORT)
-						//		.show();
 						break;
 					case 2:
 						host.setCurrentTab(1);
@@ -524,8 +531,10 @@ public class FormActivity extends AppCompatActivity {
 						nButton = tamanho2;
 						host.setCurrentTab(2);
 						break;
+                    case 4:
+                        host.setCurrentTab(3);
+                        break;
 					default:
-						System.out.println("error");
 						break;
 				}
 
@@ -554,39 +563,29 @@ public class FormActivity extends AppCompatActivity {
 			public void onClick(View view) {
 				// TODO: Vai para o proximo grupo de itens do checklist
 				try {
-
 					System.out.println(host.getCurrentTab());
-
 					switch (host.getCurrentTab()) {
 						case 0:
-
 							host.setCurrentTab(1);
 							btnBack.setEnabled(true);
 							contentList(atual);
 							btnBack.setBackgroundResource(R.color.colorPrimary);
 							break;
 						case 1:
-
-							System.out.println(nButton + " " + tamanho2);
 							if (nButton == tamanho2 - 1) {
 								host.setCurrentTab(2);
 								//TODO: proxima
 							} else {
 								nButton++;
-								//findViewById(nButton).setBackgroundResource(R.color.colorPrimary);
 								findViewById(nButton).performClick();
-								//findViewById(atual).setBackgroundResource(R.color.colorGreyBlue);
 								atual = nButton;
 							}
-							//Toast.makeText(view.getContext(),
-							//		"Button clicked index = " + nButton, Toast.LENGTH_SHORT)
-							//		.show();
-							//mHList.scrollBy(tamanho, 0);
 							break;
 						case 2:
 							host.setCurrentTab(3);
 							break;
 						case 3:
+                            host.setCurrentTab(4);
 							break;
 						default:
 							System.out.println("error");
@@ -690,7 +689,7 @@ public class FormActivity extends AppCompatActivity {
 						btnBack.setEnabled(true);
 						btnBack.setBackgroundResource(R.color.colorPrimary);
 						break;
-					case 3:
+					case 4:
 						btnNext.setEnabled(false);
 						btnNext.setBackgroundResource(R.color.colorGrey);
 						btnBack.setEnabled(true);
@@ -701,6 +700,7 @@ public class FormActivity extends AppCompatActivity {
 						btnEnd.setEnabled(true);
 						btnEnd.setBackgroundResource(R.color.colorPrimary);
 						break;
+
 					default:
 						btnNext.setEnabled(true);
 						btnNext.setBackgroundResource(R.color.colorPrimary);

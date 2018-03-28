@@ -38,6 +38,7 @@ import utility.BancoDados;
 import utility.SyncService;
 import utility.Utilidades;
 
+// TODO: 28/03/2018 mudar o nome da classe
 public class HomeActivity extends AppCompatActivity {
 	static int count = 0;
 	Bundle valores;
@@ -72,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
 		TextView textFooterData = (TextView) findViewById(R.id.textFooterData);
 		textFooterData.setText(Utilidades.getDataHora("dd/MM/yyyy"));
 		getSupportActionBar().setHomeButtonEnabled(true);
+
 		btnNewCheck = (Button) findViewById(R.id.btnNewCheck);
 		btnSavedCheck = (Button) findViewById(R.id.btnRecCheck);
 		btnUpload = (Button) findViewById(R.id.btnUpload);
@@ -131,7 +133,6 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 	public void Sincronizar() {
-		//btnSync.setEnabled(false);
 		mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setIndeterminate(true);
 		mProgressDialog.setMessage("Sincronizando...");
@@ -156,57 +157,43 @@ public class HomeActivity extends AppCompatActivity {
 
 					mProgressDialog.setMessage("Sincronizando itens...");
 					for (ItensVistoria i : resposta.itensVistoriaList) {
-
 						bd.insereItensVistoria(i);
-
 					}
 					for (RelModeloCheckListItensVistoria i : resposta.relModeloCheckListItensVistoriaList) {
-
 						bd.insereRelModeloCheckListItensVistoria(i);
-
 					}
 					for (GrupoItemVistoria i : resposta.grupoItemVistoriaList) {
 						bd.insereGrupoItemVistoria(i);
-
 					}
 					for (LocalizacaoItemVistoria i : resposta.localizacaoItemVistoriaList) {
 						bd.insereLocalizacaoItemVistoria(i);
-
 					}
 					mProgressDialog.setMessage("Sincronizando modelos...");
 					for (ModelosCheckList i : resposta.modelosCheckListList) {
 						bd.insereModelosCheckList(i);
-
 					}
 
 					for (RelModeloCheckListVeiculos i : resposta.relModeloCheckListVeiculosList) {
 						bd.insereRelModeloCheckListVeiculos(i);
-
 					}
 					for (RelModeloCheckListImagemEsquema i : resposta.relModeloCheckListImagemEsquemaList) {
 						bd.insereRelModeloCheckListImagemEsquema(i);
-
 					}
 					System.out.println(resposta.veiculosList.size());
 					mProgressDialog.setMessage("Sincronizando veículos...");
 					for (Veiculos i : resposta.veiculosList) {
 						bd.insereVeiculos(i);
-
 					}
 					for (Usuarios i : resposta.users) {
 						bd.insereUsuarios(i);
-
 					}
 					mProgressDialog.setMessage("Recebendo imagens de esquema...");
 					for (RelModeloCheckListVeiculos.ImagensEsquema i : resposta.imagensEsquemaList) {
-
 						imgDownload(i.getLinkImagem(), i.getCodigoImagem());
-						//i.setCaminhoArquivoImagem();
 						i.setCaminhoArquivoImagem(Environment.getExternalStoragePublicDirectory(
 								Environment.DIRECTORY_PICTURES) + "/" + i.getCodigoImagem() + ".jpg");
 						bd.insereImagensEsquema(i);
 					}
-
 
 					bd.closeDB();
 					if (mProgressDialog.isShowing())
@@ -221,10 +208,8 @@ public class HomeActivity extends AppCompatActivity {
 					mProgressDialog.dismiss();
 				alertSync(false);
 			}
-
 		});
 	}
-
 
 	private void imgDownload(String linkImagem, String nameForImagem) {
 		Log.e("Link correto ? ", "imgDownload: " + linkImagem + " Nome do item: " + nameForImagem);
@@ -232,7 +217,6 @@ public class HomeActivity extends AppCompatActivity {
 		teste.setNome(nameForImagem);
 		teste.execute(linkImagem);
 	}
-
 
 	private void alertSync(boolean b) {
 		if (b) {
@@ -252,22 +236,12 @@ public class HomeActivity extends AppCompatActivity {
 		}
 	}
 
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
 		switch (item.getItemId()) {
-
 			case android.R.id.home:
-
-				//Intent mIntent = new Intent(this, LoginActivity.class);;
-
-				//startActivity(mIntent);
-
 				finish(); // Finaliza a Activity atual
-
 				break;
-
 			default:
 				break;
 		}
@@ -290,8 +264,6 @@ public class HomeActivity extends AppCompatActivity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			// Create a progressdialog
-			//mProgressDialog = new ProgressDialog(HomeActivity.this);
-			// Set progressdialog title
 			mProgressDialog.setTitle("Download imagens");
 			// Set progressdialog message
 			mProgressDialog.setMessage("Loading...");
