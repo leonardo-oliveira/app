@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
 	private String codigoImagem;
 	private Button btnNewCheck;
 	private Button btnSavedCheck;
-	//private Button btnSync;
 	private Button btnUpload;
 	private Button btnCheckSend;
 
@@ -75,13 +74,8 @@ public class HomeActivity extends AppCompatActivity {
 		getSupportActionBar().setHomeButtonEnabled(true);
 		btnNewCheck = (Button) findViewById(R.id.btnNewCheck);
 		btnSavedCheck = (Button) findViewById(R.id.btnRecCheck);
-		//btnSync = (Button) findViewById(R.id.btnSync);
 		btnUpload = (Button) findViewById(R.id.btnUpload);
 		btnCheckSend = (Button) findViewById(R.id.btnRecSend);
-		//btnSavedCheck.setEnabled(false);
-		//btnSavedCheck.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-		//btnUpload.setEnabled(false);
-		//btnUpload.setBackgroundColor(getResources().getColor(R.color.colorGrey));
 		btnNewCheck.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -92,14 +86,6 @@ public class HomeActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
-
-//		btnSync.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View view) {
-//				Sincronizar();
-//			}
-//		});
-
 		btnUpload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
