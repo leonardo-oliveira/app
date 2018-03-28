@@ -195,6 +195,10 @@ public class FormActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_form);
 		assert getSupportActionBar() != null;
 
+		sp_engate1 = (Spinner) findViewById(R.id.sp_engate1);
+		sp_engate2 = (Spinner) findViewById(R.id.sp_engate2);
+		sp_engate3 = (Spinner) findViewById(R.id.sp_engate3);
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		getSupportActionBar().setTitle(getString(R.string.preenchimento));
