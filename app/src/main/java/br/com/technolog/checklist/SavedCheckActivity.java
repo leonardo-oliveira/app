@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Scroller;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,6 +126,9 @@ public class SavedCheckActivity extends AppCompatActivity {
 	private TextView textStatusInicio;
 	private ProgressDialog saveProgressDialog;
 	private TextView statusCheck;
+    private Spinner sp_engate1;
+    private Spinner sp_engate2;
+    private Spinner sp_engate3;
 
 	/**
 	 * Checks if the app has permission to write to device storage
@@ -198,6 +202,10 @@ public class SavedCheckActivity extends AppCompatActivity {
 		textFooterData.setText(Utilidades.getDataHora("dd/MM/yyyy"));
 		btnGetPlaca = (ImageButton) findViewById(R.id.btnGetPlaca);
 		TextView textInicioVistoria = (TextView) findViewById(R.id.textDataInicio);
+
+        sp_engate1 = (Spinner) findViewById(R.id.sp_engate1);
+        sp_engate2 = (Spinner) findViewById(R.id.sp_engate2);
+        sp_engate3 = (Spinner) findViewById(R.id.sp_engate3);
 
 		dataInicio = valores.getString("DATAINICIO");
 
@@ -336,6 +344,12 @@ public class SavedCheckActivity extends AppCompatActivity {
 		spec.setContent(R.id.status);
 		spec.setIndicator(getString(R.string.status));
 		host.addTab(spec);
+
+		//Tab 5
+		spec = host.newTabSpec(getString(R.string.engates));
+		spec.setContent(R.id.engates);
+		spec.setIndicator(getString(R.string.engates));
+		host.addTab(spec);
 		//função que define assinatura
 		assinatura();
 		statusCheck = (TextView) findViewById(R.id.checkListStatus);
@@ -414,10 +428,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 
 				}
 			});
-
-
 		}
-
 	}
 
 	private void setItens(ArrayList<ItensCheckList> itensCheckList) {
@@ -550,6 +561,8 @@ public class SavedCheckActivity extends AppCompatActivity {
 						nButton = tamanho2;
 						host.setCurrentTab(2);
 						break;
+					case 4:
+                        host.setCurrentTab(3);
 					default:
 						System.out.println("error");
 						break;
@@ -609,9 +622,9 @@ public class SavedCheckActivity extends AppCompatActivity {
 							host.setCurrentTab(3);
 							break;
 						case 3:
+                            host.setCurrentTab(4);
 							break;
 						default:
-
 							break;
 					}
 				} catch (Throwable t) {
@@ -669,8 +682,6 @@ public class SavedCheckActivity extends AppCompatActivity {
 							})
 							.show();
 				} else {
-
-
 					AlertDialog dialog = new AlertDialog.Builder(view.getContext())
 							.setIcon(R.drawable.cancel)
 							.setTitle(R.string.Atencao)
@@ -713,7 +724,7 @@ public class SavedCheckActivity extends AppCompatActivity {
 						btnBack.setEnabled(true);
 						btnBack.setBackgroundResource(R.color.colorPrimary);
 						break;
-					case 3:
+					case 4:
 						btnNext.setEnabled(false);
 						btnNext.setBackgroundResource(R.color.colorGrey);
 						btnBack.setEnabled(true);
@@ -1397,6 +1408,5 @@ public class SavedCheckActivity extends AppCompatActivity {
 		}
 		return myBitmap;
 	}
-
 
 }
