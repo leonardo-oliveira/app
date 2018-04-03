@@ -147,7 +147,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/last_stop"
+        android:id="@+id/last"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -194,7 +194,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_stop">
+        app:layout_constraintTop_toBottomOf="@+id/last">
 
         <TextView
             android:id="@+id/intra"
@@ -220,7 +220,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/last_place"
+        android:id="@+id/ultimo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -268,7 +268,7 @@
         android:tint="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@+id/last_veic"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_directions_blue_a700_48dp" />
+       />
 
 
 </android.support.constraint.ConstraintLayout>
